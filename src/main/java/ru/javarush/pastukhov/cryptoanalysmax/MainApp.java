@@ -3,7 +3,7 @@ package ru.javarush.pastukhov.cryptoanalysmax;
 import java.util.Arrays;
 
 public class MainApp {
-    public static void main(String[] args) {
+     static void main(String[] args) {
 
         Validator.validateInputFile();
         Validator.validateOutputFile();
@@ -20,7 +20,7 @@ public class MainApp {
 
         Validator.validateFile(FileManager.inputFile, FileManager.newOutputFile);
 
-        System.out.println(BruteForce.decryptByBruteForce(FileManager.outputFile));
+        System.out.println(BruteForce.decryptByBruteForce());
 
         char[] decryptedTextHSA = CodeCaesars.decryption(encryptedText, HackingStatisticalAnalysis.getDecryptedKey());
         FileManager.writeFile(FileManager.outputFileHackingStatisticalAnalysis, decryptedTextHSA);

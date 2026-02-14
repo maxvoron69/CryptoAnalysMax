@@ -33,14 +33,14 @@ public class BruteForce {
             Path filePath = BRUTE_FORCE_DIR.resolve(key + ".txt");
 
             try {
-                Files.write(filePath, new String(decryptedArray).getBytes(StandardCharsets.UTF_8));
+                Files.writeString(filePath, new String(decryptedArray));
             } catch (IOException e) {
                 throw new RuntimeException("Ошибка записи файла: " + filePath, e);
             }
         }
     }
 
-    public static String decryptByBruteForce(String decryptedText) {
+    public static String decryptByBruteForce() {
         try {
             allDecryptionOptions(FileManager.outputFile);
         } catch (IOException e) {
@@ -86,7 +86,7 @@ public class BruteForce {
         try {
             Files.copy(source, target, StandardCopyOption.REPLACE_EXISTING);
 
-            deleteDirectoryRecursively(BRUTE_FORCE_DIR);
+            deleteDirectoryRecursively();
 
             return "Файл полученный в результате силового взлома: C:\\Users\\user\\Documents\\DecryptedBF.txt";
 
@@ -94,8 +94,8 @@ public class BruteForce {
             throw new RuntimeException("Ошибка при копировании файла", e);
         }
     }
-    private static void deleteDirectoryRecursively(Path dir) {
-        if (!Files.exists(dir)) return;
+    private static void deleteDirectoryRecursively() {
+        if (!Files.exists(BruteForce.BRUTE_FORCE_DIR)) return;
 
         try {
             // Небольшая пауза, чтобы ОС успела освободить файлы
@@ -106,7 +106,7 @@ public class BruteForce {
         }
 
         try {
-            Files.walkFileTree(dir, new SimpleFileVisitor<>() {
+            Files.walkFileTree(BruteForce.BRUTE_FORCE_DIR, new SimpleFileVisitor<>() {
                 @Override
                 public FileVisitResult visitFile(Path file, BasicFileAttributes attrs) {
                     try {
@@ -130,7 +130,7 @@ public class BruteForce {
                 }
             });
         } catch (Exception e) {
-            System.err.println("Ошибка при обходе директории: " + dir + " → " + e.getMessage());
+            System.err.println("Ошибка при обходе директории: " + BruteForce.BRUTE_FORCE_DIR + " → " + e.getMessage());
         }
     }
 

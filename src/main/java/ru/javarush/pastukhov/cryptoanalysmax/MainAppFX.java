@@ -15,10 +15,10 @@ import java.nio.file.Paths;
 
 public class MainAppFX extends Application {
 
-    private TextArea inputArea = new TextArea();
-    private TextArea outputArea = new TextArea();
-    private TextField keyField = new TextField("3");
-    private Label statusLabel = new Label("Готово");
+    private final TextArea inputArea = new TextArea();
+    private final TextArea outputArea = new TextArea();
+    private final TextField keyField = new TextField("3");
+    private final Label statusLabel = new Label("Готово");
 
     @Override
     public void start(Stage primaryStage) {
@@ -126,7 +126,7 @@ public class MainAppFX extends Application {
 
             // Временно сохраняем в файл для BruteForce
             Files.writeString(Paths.get("temp_encrypted.txt"), text);
-            String result = BruteForce.decryptByBruteForce("temp_encrypted.txt");
+            String result = BruteForce.decryptByBruteForce();
 
             outputArea.setText(Files.readString(Paths.get("DecryptedBF.txt")));
             statusLabel.setText(result);
@@ -143,7 +143,7 @@ public class MainAppFX extends Application {
         alert.showAndWait();
     }
 
-    public static void main(String[] args) {
+    static void main(String[] args) {
         launch(args);
     }
 }

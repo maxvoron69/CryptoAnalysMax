@@ -4,6 +4,7 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 public class HackingStatisticalAnalysis {
 
@@ -32,7 +33,14 @@ public class HackingStatisticalAnalysis {
         int k2 = shift(actual.get(1), 'е', alphabet, len);
         int k3 = shift(actual.get(2), 'а', alphabet, len);
 
-        return (k1 == k2 && k2 == k3) ? k1 : k1;
+        Map<Integer, Long> keyPopularity = Arrays.stream(new int[]{k1, k2, k3})
+                .boxed()
+                .collect(Collectors.groupingBy(k -> k, Collectors.counting()));
+
+        return keyPopularity.entrySet().stream()
+                .max(Map.Entry.comparingByValue())
+                .map(Map.Entry::getKey)
+                .orElse(0);
     }
 
     private static int shift(char enc, char exp, char[] alphabet, int len) {

@@ -27,7 +27,7 @@ public class FileManager {
     public static void writeFile(String str, char[] array) {
         try {
             String text = new String(array);
-            Files.write(Path.of(str), text.getBytes(StandardCharsets.UTF_8));
+            Files.writeString(Path.of(str), text);
         } catch (IOException e) {
             System.err.println("Ошибка ввода-вывода: " + e.getMessage());
         }
