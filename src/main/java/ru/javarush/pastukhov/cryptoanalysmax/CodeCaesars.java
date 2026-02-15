@@ -14,6 +14,14 @@ public class CodeCaesars {
         return Arrays.copyOf(ALPHABET, ALPHABET.length);
     }
 
+    public static char getLetter(int index) {
+        if (index < 0 || index >= ALPHABET.length) {
+            throw new IndexOutOfBoundsException("Индекс должен быть от 0 до " + (ALPHABET.length - 1)+" включительно.");
+        }
+        return ALPHABET[index];
+    }
+
+
     public static char[] encryption(char[] chars, int key){
         char[] arrayOutputFile = new char[chars.length];
         for (int i = 0; i < chars.length; i++) {
@@ -23,7 +31,7 @@ public class CodeCaesars {
                 arrayOutputFile[i] = c;
             } else {
                 int index = Math.floorMod(pos + key, ALPHABET.length);
-                arrayOutputFile[i] = Validator.getLetter(index);
+                arrayOutputFile[i] = getLetter(index);
             }
         }
         return arrayOutputFile;

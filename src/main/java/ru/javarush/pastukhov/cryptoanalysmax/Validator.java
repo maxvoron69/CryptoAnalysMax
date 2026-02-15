@@ -6,14 +6,6 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 
 public class Validator {
-    public static final char[] ALPHABET = CodeCaesars.getAlphabet();
-
-    public static char getLetter(int index) {
-        if (index < 0 || index >= ALPHABET.length) {
-            throw new IndexOutOfBoundsException("Индекс должен быть от 0 до " + (ALPHABET.length - 1)+" включительно.");
-        }
-        return ALPHABET[index];
-    }
 
     public static void validateInputFile() {
         Path path = Paths.get(FileManager.inputFile);
@@ -30,22 +22,24 @@ public class Validator {
     }
 
     public static void validateFile(String str1, String str2) {
-        if (Files.exists(Path.of(str1)) && Files.exists(Path.of(str2))) {
-            Path fileBeforeEncrypting = Path.of(str1);
-            Path fileAfterDecrypting = Paths.get(str2);
+        Path fileBeforeEncrypting = Path.of(str1);
+        Path fileAfterDecrypting = Paths.get(str2);
+
+        if (Files.exists(fileBeforeEncrypting) && Files.exists(fileAfterDecrypting))
             try {
-                if (Files.mismatch(fileBeforeEncrypting, fileAfterDecrypting) < 0) {
-                    System.out.println("Тексты до шифрования и после дешифрации равны");
-                } else {
-                    System.out.println("Тексты до шифрования и после дешифрации отличаются");
-                }
-            } catch (
-                    IOException e) {
-                throw new RuntimeException(e);
+            if (Files.mismatch(fileBeforeEncrypting, fileAfterDecrypting) < 0) {
+                System.out.println("Тексты до шифрования и после дешифрации равны");
+            } else {
+                System.out.println("Тексты до шифрования и после дешифрации отличаются");
             }
-        }else{
+        } catch (
+                IOException e) {
+            throw new RuntimeException("Ошибка при сравнении файлов", e);
+        }
+        else {
             System.out.println("Ошибка! Указанный файл не существует!");
         }
     }
 }
+
 
