@@ -17,7 +17,9 @@ public class Validator {
     public static void validateOutputFile() {
         Path path = Paths.get(FileManager.outputFile);
         if (!Files.exists(path)) {
-            System.err.println("Файл не найден: " + path);
+            System.out.println("Файл еще не найден: " + path);
+        } else {
+            System.out.println("Файл успешно найден: " + path);
         }
     }
 

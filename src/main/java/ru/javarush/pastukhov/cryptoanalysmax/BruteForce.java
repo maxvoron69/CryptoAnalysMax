@@ -69,7 +69,7 @@ public class BruteForce {
             }
         }
         Path source = BRUTE_FORCE_DIR.resolve(bestKey + ".txt");
-        Path target = Paths.get("C:\\Users\\user\\Documents\\DecryptedBF.txt");
+        Path target = Paths.get("out/decrypted_bruteforce.txt");
 
         try {
             Files.createDirectories(target.getParent());
@@ -77,7 +77,7 @@ public class BruteForce {
 
             deleteDirectoryRecursively();
 
-            return "Файл полученный в результате силового взлома: C:\\Users\\user\\Documents\\DecryptedBF.txt";
+            return "Файл полученный в результате силового взлома: out/decrypted_bruteforce.txt";
 
         } catch (IOException e) {
             throw new RuntimeException("Ошибка при копировании файла", e);

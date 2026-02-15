@@ -33,7 +33,6 @@ public class HackingStatisticalAnalysis {
         int[] keys = new int[FREQ_USED_LETTER.length];
         for (int i = 0; i < FREQ_USED_LETTER.length; i++) {
             keys[i] = shift(actual.get(i), FREQ_USED_LETTER[i], alphabet, len);
-            System.out.printf("k%d равно: %d%n", i + 1, keys[i]);
         }
         Map<Integer, Long> popularity = Arrays.stream(keys)
                 .boxed()
