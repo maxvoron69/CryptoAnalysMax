@@ -7,9 +7,7 @@ import static ru.javarush.pastukhov.cryptoanalysmax.Alphabet.getLetter;
 
 public class CodeCaesars {
 
-    public static int key = 55;
-
-       public static char[] encryption(char[] chars, int key){
+    public static char[] encryption(char[] chars, int key) {
         char[] arrayOutputFile = new char[chars.length];
         for (int i = 0; i < chars.length; i++) {
             char c = chars[i];

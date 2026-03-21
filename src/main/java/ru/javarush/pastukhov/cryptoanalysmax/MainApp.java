@@ -1,19 +1,24 @@
 package ru.javarush.pastukhov.cryptoanalysmax;
 
 import java.util.Arrays;
+import java.util.Scanner;
 
 public class MainApp {
+    public static int key;
     static void main(String[] args) {
+        Scanner input = new Scanner(System.in);
+        System.out.print("Введите ключ - целое число от 1 до 65: ");
+        key = input.nextInt();
 
         Validator.validateInputFile();
 
         char[] text = FileManager.readFile(FileManager.inputFile);
-        char[] encryptedText = CodeCaesars.encryption(text, CodeCaesars.key);
+        char[] encryptedText = CodeCaesars.encryption(text, key);
         FileManager.writeFile(FileManager.outputFile, encryptedText);
         Validator.validateOutputFile();
         System.out.println("Текст зашифрован и записан в файл: " + FileManager.outputFile);
 
-        char[] decryptedText = CodeCaesars.decryption(encryptedText, CodeCaesars.key);
+        char[] decryptedText = CodeCaesars.decryption(encryptedText, key);
         FileManager.writeFile(FileManager.newOutputFile, decryptedText);
         System.out.println("Текст дешифрован и записан в файл: " + FileManager.newOutputFile);
 
