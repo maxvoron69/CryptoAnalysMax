@@ -125,10 +125,10 @@ public class MainAppFX extends Application {
             }
 
             // Временно сохраняем в файл для BruteForce
-            Files.writeString(Paths.get("temp_encrypted.txt"), text);
+            Files.writeString(Paths.get("out/encrypted.txt"), text);
             String result = BruteForce.decryptByBruteForce();
 
-            outputArea.setText(Files.readString(Paths.get("DecryptedBF.txt")));
+            outputArea.setText(Files.readString(Paths.get("out/decrypted_bruteforce.txt")));
             statusLabel.setText(result);
         } catch (Exception e) {
             showError("Ошибка взлома", e);
