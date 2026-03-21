@@ -28,7 +28,7 @@ public class HackingStatisticalAnalysis {
 
         if (actual.size() < FREQ_USED_LETTER.length) return 0;
 
-        char[] alphabet = CodeCaesars.getAlphabet();
+        char[] alphabet = Alphabet.getAlphabet();
         int len = alphabet.length;
         int[] keys = new int[FREQ_USED_LETTER.length];
         for (int i = 0; i < FREQ_USED_LETTER.length; i++) {
